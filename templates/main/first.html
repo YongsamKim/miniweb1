@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    장고 첫페이지!
+
+    <form method="post" id="myform">
+        {% csrf_token %}
+        <input type="text" class="write_msg inputfield mytext" placeholder="Type a message" name="message" id="send" autocomplete="off"  />
+        <button class="msg_send_btn" type="submit" onclick="sending();" >button</button>
+    </form>
+</body>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+    function sending(){
+    var f=0;
+    var message = document.getElementById("send").value;
+
+    console.log("test")
+    $.post("",
+    {
+        "message":message,
+        "csrfmiddlewaretoken":"{{csrf_token}}"
+    },
+    function(data, status){
+            console.log(data)
+            });
+  };
+</script>
+</html>
